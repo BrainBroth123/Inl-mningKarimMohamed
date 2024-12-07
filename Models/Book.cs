@@ -8,6 +8,6 @@ namespace Slutuppgift_Karim_Mohamed.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public ICollection<AuthorRegistration> Registrations { get; set; }
+        public ICollection<AuthorRegistration>? Registrations { get; set; }
     }
 }
