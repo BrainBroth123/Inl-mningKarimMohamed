@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Slutuppgift_Karim_Mohamed")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5a3b771a8b8806f386a1c66efad4d098bbf395c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91edad9a21aae18dacc0a30d97314604b9394385")]
 [assembly: System.Reflection.AssemblyProductAttribute("Slutuppgift_Karim_Mohamed")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Slutuppgift_Karim_Mohamed")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

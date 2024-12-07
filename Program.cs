@@ -26,7 +26,7 @@ namespace Slutuppgift_Karim_Mohamed
                         AddBook();
                         break;
                     case 3:
-                        //AddLoan();
+                        AddLoan();
                         break;
                     case 4:
                         //RegisterAuthorToBook();
@@ -91,22 +91,70 @@ namespace Slutuppgift_Karim_Mohamed
                 Console.WriteLine("Test data added to database.");
             }
         }
-        private static void AddLoan(Book book)
+        private static void AddLoan()
         {
             using (var context = new AppDbContext())
             {
-                var loan = new LoanRegistration
+                var Books = context.Books.ToList();
+                if (Books.Any())
                 {
-                    Book = book,
-                    LoanDate = DateTime.Now,
-                    ReturnDate = DateTime.Now.AddDays(7)
-                };
+                    ShowBooks();
 
-                context.LoanRegistrations.Add(loan);
+                    tryagain:
 
-                context.SaveChanges();
+                    Console.WriteLine("Enter ID of book you wish to loan.");
+                    int bookId;
+                    if (!int.TryParse(Console.ReadLine(), out bookId))
+                    {
+                        goto tryagain;
+                    }
 
-                Console.WriteLine("Test data added to database.");
+                    Book book = null;
+
+                    foreach (Book Book in Books)
+                    {
+                        if (Book.Id == bookId)
+                        {
+                            book = Book;
+
+                            var Loans = context.LoanRegistrations.ToList();
+                            bool containsBook = false;
+                            foreach (var loan in Loans)
+                            {
+                                if (loan.Book == book)
+                                {
+                                    containsBook = true;
+                                }
+                            }
+                            if (!containsBook)
+                            {
+                                var loan = new LoanRegistration
+                                {
+                                    Book = book,
+                                    LoanDate = DateTime.Now,
+                                    ReturnDate = DateTime.Now.AddDays(7)
+                                };
+
+                                context.LoanRegistrations.Add(loan);
+
+                                context.SaveChanges();
+
+                                Console.WriteLine("Loan added to database.");
+                            } else
+                            {
+                                Console.WriteLine("Error: book is already loaned.");
+                            }
+                        }
+                    }
+                    if (book == null)
+                    {
+                        Console.WriteLine("Error: book does not exist.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error: No books found in the database, could not register loan.");
+                }
             }
         }
         private static void RegisterAuthorToBook(Author author, Book book) 
@@ -152,7 +200,7 @@ namespace Slutuppgift_Karim_Mohamed
                     Console.WriteLine($"------------\n");
                     foreach (var book in Books)
                     {
-                        Console.WriteLine($"Title: {book.Title}\n");
+                        Console.WriteLine($"Title: {book.Title} ID: {book.Id}\n");
                     }
                     Console.WriteLine($"------------\n");
                 }
@@ -164,7 +212,27 @@ namespace Slutuppgift_Karim_Mohamed
         }
         private static void ShowLoans()
         {
-            
+            using (var context = new AppDbContext())
+            {
+                var Loans = context.LoanRegistrations.ToList();
+
+                if (Loans.Any())
+                {
+                    Console.WriteLine($"All Books\n");
+                    ShowBooks();
+                    Console.WriteLine($"Loaned Books\n");
+                    Console.WriteLine($"------------\n");
+                    foreach (var loan in Loans)
+                    {
+                        Console.WriteLine($"Loaned Book: ID: {loan.BookId} Return Date: {loan.ReturnDate}\n");
+                    }
+                    Console.WriteLine($"------------\n");
+                }
+                else
+                {
+                    Console.WriteLine("No loans found in the database.");
+                }
+            }
         }
         #endregion ReadData
     }
