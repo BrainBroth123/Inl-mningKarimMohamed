@@ -9,6 +9,8 @@ namespace Slutuppgift_Karim_Mohamed.Data
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<AuthorRegistration> AuthorRegistrations { get; set; }
+        public DbSet<LoanRegistration> LoanRegistrations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -16,7 +18,20 @@ namespace Slutuppgift_Karim_Mohamed.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Book>().HasOne(p => p.Author).WithMany(a => a.Books).HasForeignKey(p => p.AuthorId);
+            modelBuilder.Entity<Book>()
+                .HasMany(p => p.Registrations)
+                .WithOne(a => a.Book)
+                .HasForeignKey(p => p.BookId)
+                .HasForeignKey(p => p.AuthorId);
+
+            modelBuilder.Entity<Author>()
+                .HasMany(p => p.Registrations)
+                .WithOne(a => a.Author)
+                .HasForeignKey(p => p.AuthorId)
+                .HasForeignKey(p => p.BookId);
+
+            modelBuilder.Entity<LoanRegistration>()
+                .HasOne(p => p.Book);
         }
     }
 }

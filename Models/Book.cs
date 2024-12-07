@@ -8,9 +8,6 @@ namespace Slutuppgift_Karim_Mohamed.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-
-        [ForeignKey("Author")]
-        public int AuthorId { get; set; }
-        public Author Author { get; set; }
+        public ICollection<AuthorRegistration> Registrations { get; set; }
     }
 }
