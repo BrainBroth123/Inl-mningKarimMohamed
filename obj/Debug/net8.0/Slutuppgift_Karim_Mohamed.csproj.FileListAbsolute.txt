@@ -150,3 +150,4 @@ C:\Projects\Project_1\Slutuppgift_Karim_Mohamed\Slutuppgift_Karim_Mohamed\obj\De
 C:\Projects\Project_1\Slutuppgift_Karim_Mohamed\Slutuppgift_Karim_Mohamed\obj\Debug\net8.0\Slutuppgift_Karim_Mohamed.pdb
 C:\Projects\Project_1\Slutuppgift_Karim_Mohamed\Slutuppgift_Karim_Mohamed\obj\Debug\net8.0\Slutuppgift_Karim_Mohamed.genruntimeconfig.cache
 C:\Projects\Project_1\Slutuppgift_Karim_Mohamed\Slutuppgift_Karim_Mohamed\obj\Debug\net8.0\ref\Slutuppgift_Karim_Mohamed.dll
+C:\Projects\Project_1\Slutuppgift_Karim_Mohamed\Slutuppgift_Karim_Mohamed\obj\Debug\net8.0\Slutuppgift_Karim_Mohamed.sourcelink.json
